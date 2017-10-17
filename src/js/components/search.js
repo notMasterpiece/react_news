@@ -17,10 +17,10 @@ class Search extends Component {
     }
 
     render() {
-        const { children, onChanging, value} = this.props;
+        const { children, onChanging, value, searchNews} = this.props;
 
         return (
-            <form className="form-group">
+            <form className="form-group" onSubmit={searchNews}>
                 <img className="logo" src={logo} alt=""/>
                 <span className="logo_search">{children}</span>
                 <input

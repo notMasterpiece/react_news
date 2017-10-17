@@ -40,6 +40,7 @@ class App extends Component {
     this.fetctStories = this.fetctStories.bind(this);
     this.setStories = this.setStories.bind(this);
     this.onSort = this.onSort.bind(this);
+    this.searchNews = this.searchNews.bind(this);
 
 
 
@@ -47,7 +48,7 @@ class App extends Component {
     this.state = {
       result: null,
       json: list,
-      value: '',
+      value: 'react',
       searchValue: DEFAULT_QUERY,
       isLoading: false,
       sortKey: 'NONE',
@@ -59,24 +60,28 @@ class App extends Component {
   // sorting function
 
     onSort(sortKey) {
-    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
         console.log(sortKey);
+        const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
+        // console.log(sortKey);
         this.setState({
           sortKey,
           isSortReverse
       })
     }
 
+  searchNews(e) {
+      e.preventDefault();
+      this.fetctStories(this.state.value, DEFAULT_PAGE);
+  }
+
 
   search(e) {
-      console.log(e);
+      // console.log(e);
       e.preventDefault();
       // console.log(2);
       this.setState({
         value: e.target.value
     });
-
-    this.fetctStories(this.state.value, DEFAULT_PAGE);
   }
 
     remove(e) {
@@ -120,7 +125,7 @@ class App extends Component {
             .then(response => response.json())
             .then(result => {
                 this.setStories(result);
-                console.log(result);
+                // console.log(result);
             })
             .catch(error => {
                 console.log(error);
@@ -143,7 +148,9 @@ class App extends Component {
 
   render() {
 
-    const {result, value, isLoading, sortKey, isSortReverse } = this.state;
+      console.log(this.state);
+
+      const {result, value, isLoading, sortKey, isSortReverse } = this.state;
 
     const page = (result && result.page) || 0;
 
@@ -154,6 +161,7 @@ class App extends Component {
             {/*<Col sm={12}>*/}
                 <div className="app">
                     <Search
+                      searchNews={this.searchNews}
                       onChanging={this.search}
                       value={value}
 

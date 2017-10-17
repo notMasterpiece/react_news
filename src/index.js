@@ -9,13 +9,14 @@ import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import App from './js/components/App.jsx';
 import Javascript from './js/components/Javascript';
 import Node from './js/components/Node';
+import Test from './js/components/test';
 
 
 
 
 const Root = () => {
     return (
-        <Router basename="/react_news/">
+        <Router>
             <div>
 
                 <NavLink activeClassName="selected" to="/javascript">JavaScript</NavLink>
@@ -57,6 +58,8 @@ const Root = () => {
 };
 
 ReactDOM.render(
-  <Root/>,
+  <Test
+    name='Vasa'
+  />,
   document.getElementById('app')
 );

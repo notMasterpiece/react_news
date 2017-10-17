@@ -14,7 +14,7 @@ const Sort = ({sortKey, children, onSort, active}) => {
     }
 
 
-    console.log(sortClass);
+    // console.log(sortClass);
 
 
     return (
